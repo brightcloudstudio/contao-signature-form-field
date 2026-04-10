@@ -20,7 +20,7 @@ class SignatureWidget extends Widget
 
     protected $blnForAttribute = false;
 
-    public static $arrAttributes = array();
+    public $arrAttributes = array();
 
     public function generate(): string
     {
