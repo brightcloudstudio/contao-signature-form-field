@@ -16,17 +16,14 @@ use Contao\Widget;
 
 class SignatureWidget extends Widget
 {
+    protected $blnSubmitInput = true;
+    protected $blnForAttribute = true;
     protected $strTemplate = 'form_signature';
-
-    protected $blnForAttribute = false;
-
-    public $arrAttributes = array();
+    protected $strPrefix = 'widget widget-signature';
 
     public function generate(): string
     {
-        $GLOBALS['TL_JAVASCRIPT'][] = 'bundles/contaosignatureformfield/js/signature_pad.umd.min.js';
-
-        return $this->inherit();
+        return '';
     }
 
     protected function validator($varInput): mixed
