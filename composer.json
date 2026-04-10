@@ -1,7 +1,7 @@
 {
     "name": "brightcloudstudio/contao-signature-form-field",
     "description": "Adds a signature form field to the Contao Form Generator using Signature Pad.",
-    "keywords": ["contao", "content", "element", "data", "attribute", "bright", "cloud", "studio"],
+    "keywords": ["signature", "form", "field", "signature_pad", "bright", "cloud", "studio", "brightcloudstudio"],
     "type": "contao-bundle",
     "homepage": "https://brightcloudstudio.com/",
     "license": "GPL-3.0-or-later",
