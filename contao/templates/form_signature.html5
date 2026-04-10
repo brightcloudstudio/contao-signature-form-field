@@ -1,8 +1,8 @@
 <?php
+    /* Include our custom JS and CSS files */
     $GLOBALS['TL_JAVASCRIPT'][] = 'bundles/contaosignatureformfield/js/signature_pad.umd.min.js|static';
     $GLOBALS['TL_CSS'][] = 'bundles/contaosignatureformfield/css/widget_signature.css|static';
 ?>
-
 
 <?php $this->extend('form_row'); ?>
 
@@ -62,27 +62,5 @@
         });
     })();
 </script>
-
-<!--
-<script>
-    (function() {
-        var canvas = document.getElementById('canvas_<?= $this->id ?>');
-        var input = document.getElementById('<?= $this->id ?>');
-        var clearBtn = document.getElementById('clear_<?= $this->id ?>');
-        var signaturePad = new SignaturePad(canvas);
-
-        clearBtn.addEventListener('click', function() {
-            signaturePad.clear();
-            input.value = '';
-        });
-
-        canvas.closest('form').addEventListener('submit', function() {
-            if (!signaturePad.isEmpty()) {
-                input.value = signaturePad.toDataURL();
-            }
-        });
-    })();
-</script>
--->
 
 <?php $this->endblock(); ?>
