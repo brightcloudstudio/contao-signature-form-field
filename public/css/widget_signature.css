@@ -1,0 +1,8 @@
+.widget-signature {
+	height: auto;
+}
+
+.widget-signature canvas {
+	width: 100%;
+	height: auto;
+}
