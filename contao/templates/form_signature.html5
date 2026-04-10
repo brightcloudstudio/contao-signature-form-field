@@ -4,7 +4,7 @@
 <?php $this->parent(); ?>
 <?php $this->endblock(); ?>
 
-<?php $this->block('widget'); ?>
+<?php $this->block('field'); ?>
 
 <canvas id="canvas_<?= $this->id ?>" class="signature-pad"></canvas>
 <input type="hidden" id="<?= $this->id ?>" name="<?= $this->name ?>" value="">
