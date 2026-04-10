@@ -11,3 +11,5 @@
 use BCS\ContaoSignatureFormField\Widget\SignatureWidget;
 
 $GLOBALS['TL_FFL']['signature'] = SignatureWidget::class;
+
+$GLOBALS['TL_DCA']['tl_form_field']['palettes']['signature'] = '{type_legend},type;{name_legend},name,label;{fconfig_legend},mandatory;{expert_legend:hide},class,accesskey,tabindex';
