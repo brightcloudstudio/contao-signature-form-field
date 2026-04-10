@@ -1,0 +1,37 @@
+{
+    "name": "brightcloudstudio/contao-signature-form-field",
+    "description": "Adds a signature form field to the Contao Form Generator using Signature Pad.",
+    "keywords": ["contao", "content", "element", "data", "attribute", "bright", "cloud", "studio"],
+    "type": "contao-bundle",
+    "homepage": "https://brightcloudstudio.com/",
+    "license": "GPL-3.0-or-later",
+    "authors":[
+        {
+            "name": "Bright Cloud Studio",
+            "homepage": "https://brightcloudstudio.com",
+            "email": "mark@brightcloudstudio.com",
+            "role": "Developer"
+        }
+    ],
+    "support":{
+        "issues": "https://github.com/brightcloudstudio/contao-signature-form-field/issues",
+        "source": "https://github.com/brightcloudstudio/contao-signature-form-field"
+    },
+    "require": {
+        "php": "^8.1",
+        "contao/core-bundle": "^5.3"
+    },
+    "autoload": {
+        "psr-4": {
+            "BCS\\ContaoSignatureFormField\\": "src/"
+        }
+    },
+    "extra": {
+        "contao": {
+            "sources": {
+                "public": "public"
+            }
+        },
+        "contao-manager-plugin": "BCS\\ContaoSignatureFormField\\ContaoManager\\Plugin"
+    }
+}
