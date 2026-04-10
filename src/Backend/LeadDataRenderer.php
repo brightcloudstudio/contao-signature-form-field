@@ -12,26 +12,21 @@ declare(strict_types=1);
 
 namespace BCS\ContaoSignatureFormField\Backend;
 
+use Contao\DataContainer;
 use Contao\StringUtil;
 
 class LeadDataRenderer
 {
-    public static function generateChildRecord(array $row): string
+    public static function generateLabel(array $row, string $label, DataContainer $dc, array $args): string
     {
         $name = (string) ($row['name'] ?? '');
         $value = (string) ($row['value'] ?? '');
 
-        $labelHtml = sprintf(
-            '<td class="tl_file_list col_0">%s</td>',
-            StringUtil::specialchars($name)
-        );
+        $args[0] = StringUtil::specialchars($name);
+        $args[1] = self::renderValue($name, $value);
+        $args[2] = '';
 
-        $valueHtml = sprintf(
-            '<td class="tl_file_list col_1">%s</td>',
-            self::renderValue($name, $value)
-        );
-
-        return $labelHtml . $valueHtml;
+        return $args[0] . $args[1] . $args[2];
     }
 
     private static function renderValue(string $name, string $value): string
