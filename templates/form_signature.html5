@@ -1,0 +1,33 @@
+<?php $this->extend('form_row'); ?>
+
+<?php $this->block('label'); ?>
+<?php $this->parent(); ?>
+<?php $this->endblock(); ?>
+
+<?php $this->block('widget'); ?>
+
+<canvas id="canvas_<?= $this->id ?>" class="signature-pad"></canvas>
+<input type="hidden" id="<?= $this->id ?>" name="<?= $this->name ?>" value="">
+<button type="button" id="clear_<?= $this->id ?>">Clear</button>
+
+<script>
+    (function() {
+        var canvas = document.getElementById('canvas_<?= $this->id ?>');
+        var input = document.getElementById('<?= $this->id ?>');
+        var clearBtn = document.getElementById('clear_<?= $this->id ?>');
+        var signaturePad = new SignaturePad(canvas);
+
+        clearBtn.addEventListener('click', function() {
+            signaturePad.clear();
+            input.value = '';
+        });
+
+        canvas.closest('form').addEventListener('submit', function() {
+            if (!signaturePad.isEmpty()) {
+                input.value = signaturePad.toDataURL();
+            }
+        });
+    })();
+</script>
+
+<?php $this->endblock(); ?>
