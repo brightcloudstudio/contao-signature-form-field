@@ -24,6 +24,8 @@ class SignatureWidget extends Widget
 
     public function generate(): string
     {
+        $GLOBALS['TL_JAVASCRIPT'][] = 'bundles/contaosignatureformfield/js/signature_pad.umd.min.js';
+
         return $this->inherit();
     }
 
