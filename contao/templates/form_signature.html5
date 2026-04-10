@@ -1,3 +1,7 @@
+<?php
+    $GLOBALS['TL_JAVASCRIPT'][] = 'bundles/contaosignatureformfield/js/signature_pad.umd.min.js|static';
+?>
+
 <?php $this->extend('form_row'); ?>
 
 <?php $this->block('label'); ?>
