@@ -1,5 +1,13 @@
 <?php
 
+/**
+ * @copyright  Bright Cloud Studio
+ * @author     Bright Cloud Studio
+ * @package    brightcloudstudio/contao-signature-form-field
+ * @license    GPL-3.0-or-later
+ * @link       https://github.com/brightcloudstudio/contao-signature-form-field
+ */
+
 declare(strict_types=1);
 
 use BCS\ContaoSignatureFormField\Backend\LeadDataRenderer;
