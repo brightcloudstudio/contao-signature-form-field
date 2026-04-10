@@ -14,5 +14,7 @@ use BCS\ContaoSignatureFormField\Backend\LeadDataRenderer;
 
 if (isset($GLOBALS['TL_DCA']['tl_lead_data']))
 {
-    $GLOBALS['TL_DCA']['tl_lead_data']['list']['sorting']['child_record_callback'] = [LeadDataRenderer::class, 'generateChildRecord'];
+    $GLOBALS['TL_DCA']['tl_lead_data']['list']['label']['label_callback'] = [LeadDataRenderer::class, 'generateLabel'];
+
+    unset($GLOBALS['TL_DCA']['tl_lead_data']['list']['label']['format']);
 }
