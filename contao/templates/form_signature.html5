@@ -24,39 +24,48 @@
         var input = document.getElementById('<?= $this->id ?>');
         var clearBtn = document.getElementById('clear_<?= $this->id ?>');
         var signaturePad = new SignaturePad(canvas);
+        var resizeTimer;
 
-        // --- The "Magic" Resize Logic ---
+        // --- The Improved Resize Logic ---
         function resizeCanvas() {
-            // 1. Capture current signature so we don't lose it on resize
+            // 1. Capture the vector data (points), not just the image
             var ratio = Math.max(window.devicePixelRatio || 1, 1);
-            var isEmpty = signaturePad.isEmpty();
-            var currentData = !isEmpty ? signaturePad.toDataURL() : null;
+            var currentData = signaturePad.toData();
 
-            // 2. Set the internal dimensions to match the display size
+            // 2. Adjust internal dimensions
             canvas.width = canvas.offsetWidth * ratio;
             canvas.height = canvas.offsetHeight * ratio;
             canvas.getContext("2d").scale(ratio, ratio);
 
-            // 3. Reset the pad state and reload data if it existed
+            // 3. Clear and Re-draw
+            // signaturePad.clear() is often redundant here as width change clears canvas,
+            // but we call it to reset the internal state of the library.
             signaturePad.clear(); 
-            if (!isEmpty) {
-                signaturePad.fromDataURL(currentData);
+            
+            if (currentData.length > 0) {
+                signaturePad.fromData(currentData);
             }
         }
 
-        // Run on load and whenever the window changes size
-        window.addEventListener("resize", resizeCanvas);
-        // Slight delay or immediate call to ensure CSS has rendered first
+        // Use a debounce to prevent the "blur" while dragging the window
+        window.addEventListener("resize", function() {
+            clearTimeout(resizeTimer);
+            resizeTimer = setTimeout(resizeCanvas, 200);
+        });
+
+        // Initial call
         resizeCanvas();
         // --------------------------------
 
-        clearBtn.addEventListener('click', function() {
+        clearBtn.addEventListener('click', function(e) {
+            e.preventDefault(); // Prevents form jumping if clear is a button
             signaturePad.clear();
             input.value = '';
         });
 
         canvas.closest('form').addEventListener('submit', function() {
             if (!signaturePad.isEmpty()) {
+                // We save the final result as a DataURL for the server/database
                 input.value = signaturePad.toDataURL();
             }
         });
