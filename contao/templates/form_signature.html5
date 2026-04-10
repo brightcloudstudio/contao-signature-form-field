@@ -1,6 +1,8 @@
 <?php
     $GLOBALS['TL_JAVASCRIPT'][] = 'bundles/contaosignatureformfield/js/signature_pad.umd.min.js|static';
+    $GLOBALS['TL_CSS'][] = 'bundles/contaosignatureformfield/css/widget_signature.css|static';
 ?>
+
 
 <?php $this->extend('form_row'); ?>
 
@@ -12,8 +14,56 @@
 
 <canvas id="canvas_<?= $this->id ?>" class="signature-pad"></canvas>
 <input type="hidden" id="<?= $this->id ?>" name="<?= $this->name ?>" value="">
-<button type="button" id="clear_<?= $this->id ?>">Clear</button>
+<div class="signature_conrols">
+    <button type="button" id="clear_<?= $this->id ?>">Clear</button>
+</div>
 
+<script>
+    (function() {
+        var canvas = document.getElementById('canvas_<?= $this->id ?>');
+        var input = document.getElementById('<?= $this->id ?>');
+        var clearBtn = document.getElementById('clear_<?= $this->id ?>');
+        var signaturePad = new SignaturePad(canvas);
+
+        // --- The "Magic" Resize Logic ---
+        function resizeCanvas() {
+            // 1. Capture current signature so we don't lose it on resize
+            var ratio = Math.max(window.devicePixelRatio || 1, 1);
+            var isEmpty = signaturePad.isEmpty();
+            var currentData = !isEmpty ? signaturePad.toDataURL() : null;
+
+            // 2. Set the internal dimensions to match the display size
+            canvas.width = canvas.offsetWidth * ratio;
+            canvas.height = canvas.offsetHeight * ratio;
+            canvas.getContext("2d").scale(ratio, ratio);
+
+            // 3. Reset the pad state and reload data if it existed
+            signaturePad.clear(); 
+            if (!isEmpty) {
+                signaturePad.fromDataURL(currentData);
+            }
+        }
+
+        // Run on load and whenever the window changes size
+        window.addEventListener("resize", resizeCanvas);
+        // Slight delay or immediate call to ensure CSS has rendered first
+        resizeCanvas();
+        // --------------------------------
+
+        clearBtn.addEventListener('click', function() {
+            signaturePad.clear();
+            input.value = '';
+        });
+
+        canvas.closest('form').addEventListener('submit', function() {
+            if (!signaturePad.isEmpty()) {
+                input.value = signaturePad.toDataURL();
+            }
+        });
+    })();
+</script>
+
+<!--
 <script>
     (function() {
         var canvas = document.getElementById('canvas_<?= $this->id ?>');
@@ -33,5 +83,6 @@
         });
     })();
 </script>
+-->
 
 <?php $this->endblock(); ?>
