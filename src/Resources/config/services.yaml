@@ -3,4 +3,4 @@ services:
         autowire: true
         autoconfigure: true
 
-    Bcs\ContaoSignatureFormField\EventListener\PrepareFormDataListener: ~
+    BCS\ContaoSignatureFormField\EventListener\PrepareFormDataListener: ~
