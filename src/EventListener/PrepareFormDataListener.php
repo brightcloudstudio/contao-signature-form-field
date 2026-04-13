@@ -18,9 +18,13 @@ class PrepareFormDataListener
 {
     public function __invoke(array &$submittedData, array $labels, array $fields, Form $form): void
     {
-        echo "<pre>";
-        print_r($submittedData);
-        echo "</pre>";
-        die();
+        $submittedData['first_name'] = 'Test';
+
+        // Generate PDF
+
+        // Store PDF
+
+        // Add PDF URL to hidden field on form so it gets stored in Leads
+     
     }
 }
