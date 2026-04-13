@@ -68,6 +68,19 @@ class PrepareFormDataListener
     		                break;
     		        }
     		    break;
+    		    case 'submitted':
+    		        switch($explodedTag[1]) {
+    		            case 'name':
+    		                $html = str_replace($tag, $submittedData['first_name'] . ' ' . $submittedData['last_name'], $html);
+    		                break;
+    		            case 'date':
+    		                $html = str_replace($tag, date('m/d/y'), $html);
+    		                break;
+    		            case 'signature':
+    		                $html = str_replace($tag, $submittedData['signature'], $html);
+    		                break;
+    		        }
+    		    break;
             }
         }
 
