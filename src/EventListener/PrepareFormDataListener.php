@@ -41,7 +41,8 @@ class PrepareFormDataListener
 
 
         // Get our template HTML
-        $html = file_get_contents('../templates/certificate.html', true);
+        //$html = file_get_contents('../templates/volunteer_coi_form.html', true);
+        $html = file_get_contents('bundles/contaosignatureformfield/templates/volunteer_coi_form.html', true);
 
 
         // Swap out template tags
