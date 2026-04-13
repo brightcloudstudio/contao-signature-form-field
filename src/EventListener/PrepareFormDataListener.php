@@ -77,7 +77,7 @@ class PrepareFormDataListener
         $dompdf->loadHtml($html);
 
         // Set our paper size and orientation
-        $dompdf->setPaper('A4', 'landscape');
+        $dompdf->setPaper('A4', 'portrait');
 
         // Render our PDF using the loaded HTML
         $dompdf->render();
