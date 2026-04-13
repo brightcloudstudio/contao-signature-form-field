@@ -1,14 +1,21 @@
 <?php
 
+/**
+ * @copyright  Bright Cloud Studio
+ * @author     Bright Cloud Studio
+ * @package    brightcloudstudio/contao-signature-form-field
+ * @license    GPL-3.0-or-later
+ * @link       https://github.com/brightcloudstudio/contao-signature-form-field
+ */
 
-namespace Bcs\ContaoSignatureFormField\DependencyInjection;
+namespace BCS\ContaoSignatureFormField\DependencyInjection;
 
 use Symfony\Component\Config\FileLocator;
 use Symfony\Component\DependencyInjection\ContainerBuilder;
 use Symfony\Component\DependencyInjection\Extension\Extension;
 use Symfony\Component\DependencyInjection\Loader\YamlFileLoader;
 
-class BcsSignatureFormFieldExtension extends Extension
+class ContaoSignatureFormFieldExtension extends Extension
 {
     public function load(array $configs, ContainerBuilder $container): void
     {
