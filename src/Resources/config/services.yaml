@@ -3,4 +3,6 @@ services:
         autowire: true
         autoconfigure: true
 
-    BCS\ContaoSignatureFormField\EventListener\PrepareFormDataListener: ~
+    BCS\ContaoSignatureFormField\EventListener\PrepareFormDataListener:
+        arguments:
+            $projectDir: '%kernel.project_dir%'
