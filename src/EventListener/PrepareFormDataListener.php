@@ -61,14 +61,13 @@ class PrepareFormDataListener
 
             // Do different things based on the first part of our tag
             switch ($explodedTag[0]) {
-
-                case 'member':
-                    switch ($explodedTag[1]) {
-                        case 'name':
-                            $html = str_replace($tag, $member['name'], $html);
-                            break;
-                    }
-                    break;
+                case 'server':
+    		        switch($explodedTag[1]) {
+    		            case 'root':
+    		                $html = str_replace($tag, $_SERVER["DOCUMENT_ROOT"], $html);
+    		                break;
+    		        }
+    		    break;
             }
         }
 
